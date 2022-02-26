@@ -1,6 +1,6 @@
-package com.example.data.remote.model
+package com.example.domain.model
 
-data class DataLoveResponse(
+data class DomainLoveResponse(
     val fname: String,
     val sname: String,
     val percentage: Int,
