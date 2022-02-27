@@ -15,12 +15,22 @@ import com.google.firebase.firestore.QuerySnapshot
 import javax.inject.Inject
 
 class MainDataSourceImpl @Inject constructor(
-    private val loveCalculatorApi: LoveCalculatorApi
+    private val loveCalculatorApi: LoveCalculatorApi,
+    private val firebaseRtdb: FirebaseDatabase,
+    private val fireStore: FirebaseFirestore
 ) : BaseDataSource(), MainDataSource {
 
     override suspend fun checkLoveCalculator(remoteErrorEmitter: RemoteErrorEmitter, host : String, key : String, mName : String, wName : String): DataLoveResponse? {
         return safeApiCall(remoteErrorEmitter){
             loveCalculatorApi.getPercentage(host = host, key = key, fName = wName, sName = mName)
         }?.body()
+    }
+
+    override fun getStatistics(): Task<DataSnapshot> {
+        return firebaseRtdb.reference.child("statistics").get()
+    }
+
+    override fun setStatistics(plusValue: Int): Task<Void> {
+        return firebaseRtdb.reference.child("statistics").setValue(plusValue)
     }
 }

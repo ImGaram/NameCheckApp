@@ -8,13 +8,15 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.firestore.QuerySnapshot
 
 interface MainRepository {
-    suspend fun checkLoveCalculator(remoteError: RemoteErrorEmitter, host: String, key: String, mName: String, wName: String): DomainLoveResponse?
+    suspend fun checkLoveCalculator(
+        remoteError: RemoteErrorEmitter,
+        host: String, key: String,
+        mName: String, wName: String)
+    : DomainLoveResponse?
 
-//    fun getStatistics(): Task<DataSnapshot>
-//
-//    fun setStatistics(plusResult: Int): Task<Void>
-//
-//    fun setScore(score:DomainScore): Task<Void>
-//
-//    fun getScore(): Task<QuerySnapshot>
+    // 통계 가져오기
+    fun getStatistics(): Task<DataSnapshot>
+
+    // 통계 저장하기
+    fun setStatistics(plusValue: Int): Task<Void>
 }

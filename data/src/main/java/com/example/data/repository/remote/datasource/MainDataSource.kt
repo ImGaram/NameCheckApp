@@ -8,6 +8,7 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.firestore.QuerySnapshot
 
 interface MainDataSource {
+    // 궁합 api 호출
     suspend fun checkLoveCalculator(
         remoteErrorEmitter: RemoteErrorEmitter,
         host: String,
@@ -16,11 +17,8 @@ interface MainDataSource {
         wName: String
     ): DataLoveResponse?
 
-//    fun getStatistics(): Task<DataSnapshot>
-//
-//    fun setStatistics(plusResult: Int): Task<Void>
-//
-//    fun setScore(score: DataScore): Task<Void>
-//
-//    fun getScore(): Task<QuerySnapshot>
+    // 통계 가져오기
+    fun getStatistics(): Task<DataSnapshot>
+    // 통계 저장하기
+    fun setStatistics(plusValue: Int): Task<Void>
 }
