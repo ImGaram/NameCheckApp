@@ -2,10 +2,7 @@ package com.example.namecheckapplication.di
 
 import com.example.domain.repository.MainRepository
 import com.example.domain.repository.SplashRepository
-import com.example.domain.usecase.CheckAppVersionUseCase
-import com.example.domain.usecase.CheckLoveCalculatorUseCase
-import com.example.domain.usecase.GetStatisticsUseCase
-import com.example.domain.usecase.SetStatisticsUseCase
+import com.example.domain.usecase.*
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -30,4 +27,12 @@ class UserCaseModule {
     @Provides
     @Singleton
     fun provideSetStatisticsUseCase(repository: MainRepository) = SetStatisticsUseCase(repository)
+
+    @Provides
+    @Singleton
+    fun provideSetScoreUseCase(repository: MainRepository) = SetScoreUseCase(repository)
+
+    @Provides
+    @Singleton
+    fun provideGetScoreUseCase(repository: MainRepository) = GetScoreUseCase(repository)
 }

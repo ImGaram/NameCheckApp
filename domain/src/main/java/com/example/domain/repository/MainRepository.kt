@@ -19,4 +19,10 @@ interface MainRepository {
 
     // 통계 저장하기
     fun setStatistics(plusValue: Int): Task<Void>
+
+    // 전적 가져오기
+    fun getScore(): Task<QuerySnapshot>
+
+    // 전적 저장하기
+    fun setScore(score: DomainScore): Task<Void>
 }

@@ -33,4 +33,12 @@ class MainDataSourceImpl @Inject constructor(
     override fun setStatistics(plusValue: Int): Task<Void> {
         return firebaseRtdb.reference.child("statistics").setValue(plusValue)
     }
+
+    override fun getScore(): Task<QuerySnapshot> {
+        return fireStore.collection("score").orderBy("date", Query.Direction.DESCENDING).get()
+    }
+
+    override fun setScore(score: DataScore): Task<Void> {
+        return fireStore.collection("score").document().set(score)
+    }
 }
